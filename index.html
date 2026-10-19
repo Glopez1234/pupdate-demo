@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5437c7">
+<title>Pawday — Calmer days for dog daycares</title>
+
+<style>
+:root {
+  --purple: #5437c7;
+  --pink: #ff79b5;
+  --yellow: #ffe16b;
+  --ink: #241d3b;
+  --muted: #6f6a83;
+  --paper: #faf8ff;
+  --line: #e9e3f6;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+}
+
+.wrap {
+  width: min(1100px, 100% - 32px);
+  margin: auto;
+}
+
+header { padding: 18px 0; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 23px;
+  font-weight: 950;
+  text-decoration: none;
+  letter-spacing: -.04em;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--yellow);
+  border-radius: 13px;
+}
+
+.navlink {
+  color: var(--purple);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.hero { padding: 28px 0 38px; }
+
+.hero-grid {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: #eee8ff;
+  color: var(--purple);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: clamp(38px, 10vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -.06em;
+  margin: 18px 0 16px;
+}
+
+h1 span { color: var(--purple); }
+
+.lead {
+  font-size: 17px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 14px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--purple);
+  color: white;
+  box-shadow: 0 5px 0 #39218e;
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--purple);
+}
+
+.price-note {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 17px;
+}
+
+.hero-art {
+  position: relative;
+  background: linear-gradient(145deg,#e6ddff,#ffe2ef);
+  border-radius: 28px;
+  padding: 14px;
+}
+
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.float-card {
+  position: absolute;
+  left: 23px;
+  bottom: 26px;
+  background: white;
+  border-radius: 15px;
+  padding: 11px 14px;
+  box-shadow: 0 10px 30px #34205b20;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.float-card span {
+  display: block;
+  color: #13795b;
+  font-size: 11px;
+}
+
+section { padding: 36px 0; }
+
+.section-kicker {
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+h2 {
+  font-size: clamp(28px, 7vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  margin: 8px 0 12px;
+}
+
+.section-intro {
+  max-width: 650px;
+  color: var(--muted);
+}
+
+.problem {
+  background: var(--ink);
+  color: white;
+  border-radius: 25px;
+  padding: 24px;
+}
+
+.problem .section-kicker { color: var(--yellow); }
+
+.quote {
+  font-size: 19px;
+  line-height: 1.5;
+  font-weight: 750;
+  margin: 20px 0 10px;
+}
+
+.invented {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #cfc6f3;
+  font-weight: 900;
+}
+
+.pain-points {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pain {
+  border: 1px solid #ffffff25;
+  background: #ffffff0b;
+  border-radius: 14px;
+  padding: 13px;
+  font-size: 14px;
+}
+
+.pain strong {
+  display: block;
+  color: var(--yellow);
+  margin-bottom: 3px;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+}
+
+.step {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  padding: 20px;
+}
+
+.step-num {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: #c6f5e2;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 950;
+  margin-bottom: 15px;
+}
+
+.step:nth-child(2) .step-num { background: #ffe2ef; }
+.step:nth-child(3) .step-num { background: #e8e0ff; }
+
+.step h3 {
+  font-size: 19px;
+  margin: 0 0 7px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.planned {
+  display: inline-block;
+  margin-top: 10px;
+  background: #fff2c7;
+  color: #745400;
+  border-radius: 7px;
+  padding: 4px 7px;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.price-card {
+  background: linear-gradient(140deg,#f0eaff,#fff0f7);
+  border: 1px solid #e4d8ff;
+  border-radius: 25px;
+  padding: 24px;
+}
+
+.price-tag {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--purple);
+}
+
+.price-amount {
+  font-size: 43px;
+  letter-spacing: -.06em;
+  font-weight: 950;
+  line-height: 1.2;
+  margin: 7px 0;
+}
+
+.price-amount small {
+  font-size: 15px;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.price-card p,
+.price-card li {
+  font-size: 14px;
+}
+
+.price-card p { color: var(--muted); }
+
+.price-card li { margin: 7px 0; }
+
+.price-card .btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.signup {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  padding: 22px;
+}
+
+.signup h2 { font-size: 32px; }
+
+.form-row {
+  display: grid;
+  gap: 12px;
+  margin-top: 17px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 850;
+  margin-bottom: 6px;
+}
+
+input {
+  width: 100%;
+  min-height: 49px;
+  border: 1px solid #dcd5ed;
+  border-radius: 12px;
+  padding: 13px 12px;
+  background: white;
+  color: var(--ink);
+}
+
+input:focus {
+  outline: 3px solid #dcd1ff;
+  border-color: var(--purple);
+}
+
+.consent, .note {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.signup .btn {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.thanks {
+  display: none;
+  margin-top: 15px;
+  background: #e4fbf0;
+  border: 1px solid #b6ebd5;
+  border-radius: 14px;
+  padding: 15px;
+  color: #145b43;
+  font-weight: 800;
+}
+
+.thanks.show { display: block; }
+
+footer {
+  padding: 24px 0 30px;
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+footer a {
+  color: var(--purple);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+@media (min-width: 700px) {
+  .wrap { width: min(1100px, 100% - 48px); }
+
+  .hero { padding: 46px 0 58px; }
+
+  .hero-grid {
+    grid-template-columns: 1.1fr .9fr;
+    gap: 35px;
+  }
+
+  .hero-art { padding: 17px; }
+  .hero-art img { height: 366px; }
+
+  .actions {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .pain-points, .steps {
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  .step { padding: 23px; }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .signup { padding: 30px; }
+
+  .form-row { grid-template-columns: 1fr 1fr; }
+
+  .footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  section { padding: 48px 0; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="Pawday home">
+      <span class="logo-mark">🐾</span> pawday
+    </a>
+    <a class="navlink" href="#waitlist">Get early access ↗</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">
+        MADE FOR INDEPENDENT DOG DAYCARES IN IRELAND
+      </div>
+
+      <h1>Fewer booking headaches. <span>More happy tails.</span></h1>
+
+      <p class="lead">
+        A simpler way for small dog daycare teams to keep track of daily
+        capacity, vaccination dates and quick care updates — without
+        juggling every message by hand.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary"
+           href="https://glopez1234.github.io/pupdate-daycare/"
+           target="_blank" rel="noopener">
+          🐶 Try the demo ↗
+        </a>
+        <a class="btn btn-secondary" href="#waitlist">
+          Join the waiting list
+        </a>
+      </div>
+
+      <p class="price-note">
+        Planned starting price:
+        <strong>€49.99 per month</strong>.
+        Join the list to register interest — no payment required.
+      </p>
+    </div>
+
+    <div class="hero-art">
+      <img
+        src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1100&q=85"
+        alt="Two dogs playing together outdoors">
+      <div class="float-card">
+        🐕 Less admin, more play
+        <span>Concept preview · sample data only</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="problem">
+      <div class="section-kicker">Sound familiar?</div>
+      <h2>Your hands are full. Your inbox is too.</h2>
+
+      <p class="quote">
+        “I'm juggling WhatsApp bookings and paper vaccination records
+        while trying to look after 40 dogs. I can't afford to turn
+        customers away because I've overbooked, and I haven't got time
+        to answer messages all day.”
+      </p>
+
+      <div class="invented">
+        Invented quote based on the niche's stated problems —
+        not a real customer testimonial.
+      </div>
+
+      <div class="pain-points">
+        <div class="pain">
+          <strong>📅 Busy days fill up</strong>
+          Manual bookings can lead to too many dogs on one day
+          and empty spaces on another.
+        </div>
+
+        <div class="pain">
+          <strong>💉 Records get missed</strong>
+          Paper vaccination records are difficult to check quickly
+          when dogs arrive.
+        </div>
+
+        <div class="pain">
+          <strong>💬 The same questions repeat</strong>
+          Owners want to know how their dog is doing while staff
+          are busy caring for them.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-kicker">How Pawday works</div>
+    <h2>Three steps. One calmer routine.</h2>
+
+    <p class="section-intro">
+      Pawday is a prototype concept for independent Irish dog daycare
+      centres. The demo shows how these everyday jobs could fit together.
+    </p>
+
+    <div class="steps">
+      <article class="step">
+        <div class="step-num">1</div>
+        <h3>See the spaces</h3>
+        <p>
+          Check the week at a glance, see how many places remain out of 40,
+          and test a booking against the sample vaccination record.
+        </p>
+        <span class="planned">Prototype shown in demo</span>
+      </article>
+
+      <article class="step">
+        <div class="step-num">2</div>
+        <h3>Tap a care update</h3>
+        <p>
+          In the demo's Today view, staff can tap Ate, Walked, Played
+          or Napped. Vaccination alerts and check-in rules use sample data.
+        </p>
+        <span class="planned">Prototype shown in demo</span>
+      </article>
+
+      <article class="step">
+        <div class="step-num">3</div>
+        <h3>Share a Pupdate</h3>
+        <p>
+          Preview an owner view of their selected dog's notes.
+          Secure, individual customer accounts are planned before
+          real-world use.
+        </p>
+        <span class="planned">Secure accounts planned</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <div class="section-kicker">Simple pricing</div>
+      <h2>One clear starting price.</h2>
+      <p class="section-intro">
+        Designed around the needs of small, independent dog daycare
+        teams — not every pet business at once.
+      </p>
+    </div>
+
+    <div class="price-card">
+      <div class="price-tag">PLANNED STARTING PRICE</div>
+      <div class="price-amount">€49.99 <small>/ month</small></div>
+
+      <p>
+        This is the intended starting price for the generic product,
+        not an active paid subscription.
+      </p>
+
+      <ul>
+        <li>Capacity-focused booking view</li>
+        <li>Vaccination status checks</li>
+        <li>One-tap daily care notes</li>
+        <li>Owner Pupdate view concept</li>
+      </ul>
+
+      <a class="btn btn-primary" href="#waitlist">
+        Register your interest
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="waitlist">
+  <div class="wrap">
+    <div class="signup">
+      <div class="section-kicker">Help shape Pawday</div>
+      <h2>Be first to hear about early access.</h2>
+
+      <p class="section-intro">
+        Are you running an independent dog daycare in Ireland?
+        Register your interest and help guide what gets built next.
+      </p>
+
+      <form id="waitlistForm">
+        <div class="form-row">
+          <div>
+            <label for="name">Your name</label>
+            <input id="name" name="name" autocomplete="name"
+                   placeholder="Your name" required maxlength="80">
+          </div>
+
+          <div>
+            <label for="email">Business email</label>
+            <input id="email" name="email" type="email"
+                   autocomplete="email" placeholder="you@yourdaycare.ie"
+                   required maxlength="150">
+          </div>
+        </div>
+
+        <p class="consent">
+          Demo form only: your details are not sent, stored or collected.
+        </p>
+
+        <button class="btn btn-primary" type="submit">
+          Join the waiting list
+        </button>
+
+        <div class="thanks" id="thanks" role="status" aria-live="polite">
+          🐾 Thanks for your interest! This demo form does not send
+          or save your details. You can close this page safely.
+        </div>
+      </form>
+
+      <p class="note">
+        No payment. No live sign-up system yet. Submitting this form
+        only displays the thank-you message.
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      🐾 Pawday · A product concept for independent dog daycares in Ireland.
+    </div>
+    <a href="notes.html">Behind the build ↗</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById("waitlistForm").addEventListener(
+  "submit",
+  function(event) {
+    event.preventDefault();
+
+    // Demo only: no data is sent or stored.
+    document.getElementById("thanks").classList.add("show");
+
+    this.querySelector('button[type="submit"]').textContent =
+      "Thank you!";
+  }
+);
+</script>
+</body>
+</html>
